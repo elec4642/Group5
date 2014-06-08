@@ -144,16 +144,16 @@ class FireWall (object):
 			if dict_table[packet.src] == packet.dst:
 				log.debug("Droping flow %s->%s", packet.src, packet.dst)
 				drop()
-		d = static_num()
-		print"***d = "
-		print d
-		print "******"
-		if d>timeCounter:
-			if packet.src in dict_table1:
-				if dict_table1[packet.src] == packet.dst:
-					
-						log.debug("Droping flow %s->%s", packet.src, packet.dst)
-						drop()
+
+		if packet.src in dict_table1:
+			if dict_table1[packet.src] == packet.dst:
+				d = static_num()
+				print"***d = "
+				print d
+				print "******"
+				if d>timeCounter:	
+					log.debug("Droping flow %s->%s", packet.src, packet.dst)
+					drop()
 		if packet.src in dict_table2:
 			timeCond = timeCompare()
 			if timeCond == 0:	
